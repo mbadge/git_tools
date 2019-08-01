@@ -47,7 +47,7 @@ yaml()    { echo -e "${FMT_YAML}$*${FMT_OFF}"; }
 ####                                 MAIN                                   ####
 ################################################################################
 section "Fetch all repos"
-cd ~/ && mr status
+cd / && mr status
 # ^ change to base directory so I status all repos instead of (default) only downstream repos
 
 

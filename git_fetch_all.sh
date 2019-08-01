@@ -47,7 +47,8 @@ yaml()    { echo -e "${FMT_YAML}$*${FMT_OFF}"; }
 ####                                 MAIN                                   ####
 ################################################################################
 section "Fetch all repos"
-cd ~/ && mr fetch -p
-# ^ change to base directory so I fetch all repos instead of (default) only downstream repos
+cd / && mr fetch -p
+# ^ change to root directory so I fetch all repos instead of (default) only downstream repos
+#   including repos on other drives: e.g., `/media/marcus/*`
 
 
