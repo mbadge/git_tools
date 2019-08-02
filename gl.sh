@@ -1,20 +1,35 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
-# Git log inspection functions
-# Pretty formatting of either the selecting revision range or all commits
-# Default shows max info
-# Override shows filtered range
-# Problem: Other flags are incorrectly interpreted because they fill the first positional arg spot where
-# a revision range is expected
-
-# workaround:
-# make separate functions for the 2 most commonly used flags:
-# * `glv`: --stat
-# * `glvv`: -p
+#/ Usage: gl.sh INCLUDE_AUTHOR COMMIT_RANGE
+#/ Description: Pretty formatting of either the selected revision range or all commits.
+#/	include author: boolean true/false. default: false
+#/	commit range: defaul --all.  provide range with COMMIT1..COMMIT2
+#/ Examples: gl.sh true develop..master
+#/ Options:
+#/   --help: Display this help message
+usage() { grep '^#/' "$0" | cut -c4- ; exit 0 ; }
+expr "$*" : ".*--help" > /dev/null && usage
 
 
-function gl() {
-    git log --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" ${1}
-}
+################################################################################
+####                                PARAMS                                  ####
+################################################################################
+INCLUDE_AUTHOR=${1:-false}
+COMMIT_RANGE=${2:---all}
+################################################################################
 
-gl ${1:---all}
+
+################################################################################
+####                                 MAIN                                   ####
+################################################################################
+if $INCLUDE_AUTHOR
+then
+	FORMAT_GIT_LOG="%C(auto)%h %cn%  %Cblue%cr%Creset%C(auto) %d %s"
+else
+	FORMAT_GIT_LOG="%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s"
+fi
+
+git log --graph --pretty="${FORMAT_GIT_LOG}" ${COMMIT_RANGE} 
+#						 ^ formatting variable requires enquoting
