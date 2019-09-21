@@ -45,4 +45,41 @@ checkout = git clone 'git@git.nak.co:mabadgeley/api.git' 'api'
 [/mnt/repo/mab/experimental]
 checkout = git clone 'git@git.nak.co:mabadgeley/experimental.git' 'experimental'
 
+
+
+# NFER ----
+[/mnt/repo/nfer/gan]
+checkout = git clone git@git.nak.co:nfer/path_gan.git 'path_gan'
+fetch = git fetch -p
+
+[/mnt/repo/nfer/path]
+checkout = git clone git@git.nak.co:nfer/nfer_path.git 'nfer_path'
+fetch = git fetch -p
+
+[/mnt/repo/nfer/subcellular-gene-localization]
+checkout = git clone git@git.nak.co:nfer/subcellular-gene-localization.git 'subcellular-gene-localization'
+fetch = git fetch -p
+
+
 # END REPOS
+
+[/mnt/repo/lib/MyUtils]
+checkout = git clone 'git@git.nak.co:libR/MyUtils.git' 'MyUtils'
+
+[/mnt/repo/lib/AnalysisToolkit]
+checkout = git clone 'git@git.nak.co:libR/AnalysisToolkit.git' 'AnalysisToolkit'
+
+[/mnt/repo/lib/MlAnalysis]
+checkout = git clone 'git@git.nak.co:libR/MlAnalysis.git' 'MlAnalysis'
+
+[/mnt/repo/lib/R-DlAnalysis]
+checkout = git clone 'git@git.nak.co:libR/R-DlAnalysis.git' 'R-DlAnalysis'
+
+[/mnt/repo/lib/testr]
+checkout = git clone 'git@git.nak.co:libR/testr.git' 'testr'
+
+[/mnt/repo/lib/thirdparty]
+checkout = git clone 'git@git.nak.co:libR/thirdparty.git' 'thirdparty'
+
+[/mnt/repo/lib/vizR]
+checkout = git clone 'git@git.nak.co:libR/vizR.git' 'vizR'
