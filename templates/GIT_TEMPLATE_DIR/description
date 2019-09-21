@@ -1,4 +1,6 @@
-This directory is a template for new git repos initialized via git init
+This directory is a template for new git repos initialized via `git init`
 
-# It can be referenced by the environment variable $GIT_TEMPLATE_DIR
+# Template dir source: `~/stow/git-tools/templates/GIT_TEMPLATE_DIR`
+#
+# Referenced by the environment variable $GIT_TEMPLATE_DIR (set up in `~/.aliases`)
 # See https://git-scm.com/docs/git-init#_template_directory
