@@ -1,0 +1,3 @@
+[$HOME/.config/vcsh/repo.d/vim.git]
+checkout = vcsh clone git@git.nak.co:libR/vim.git vim
+fetch = git fetch -p

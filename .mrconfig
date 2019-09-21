@@ -1,0 +1,32 @@
+[DEFAULT]
+git_gc = git gc "$@"
+jobs = 5
+
+# VCSH ----
+include = cat ~/.config/mr/config.d/*
+#             ^ also version-controlled in dot-files vcsh repo
+
+#! TODO(mabadgeley): have each vcsh repo manage it's own mr config 
+# via using the `~/.config/mr/config.d/*.vcsh` system with 1 file per
+# repo
+
+[$HOME/.config/vcsh/repo.d/dotfiler.git]
+checkout = vcsh clone git@git.nak.co:home/dotfiler dotfiler
+fetch = git fetch -p
+
+# END VCSH
+
+
+# DOT-FILES ----
+[bin/stow/admin]
+checkout = git clone 'git@git.nak.co:libR/admin.git' 'admin'
+
+[bin/stow/git_tools]
+checkout = git clone 'git@git.nak.co:libR/git-tools.git' 'git_tools'
+
+[bin/stow/reporting]
+checkout = git clone 'git@git.nak.co:libR/reporting-tools.git' 'reporting'
+
+[bin/stow/workflow]
+checkout = git clone 'git@git.nak.co:home/workflow.git' 'workflow'
+# END DOT-FILES
