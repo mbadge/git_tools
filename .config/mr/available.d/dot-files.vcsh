@@ -1,0 +1,3 @@
+[$HOME/.config/vcsh/repo.d/dot-files.git]
+checkout = vcsh clone git://github.com/libR/dot-files.git dot-files
+fetch = git fetch -p

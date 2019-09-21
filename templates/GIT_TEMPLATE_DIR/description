@@ -1,0 +1,4 @@
+This directory is a template for new git repos initialized via git init
+
+# It can be referenced by the environment variable $GIT_TEMPLATE_DIR
+# See https://git-scm.com/docs/git-init#_template_directory

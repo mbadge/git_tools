@@ -1,0 +1,48 @@
+[DEFAULT]
+git_gc = git gc "$@"
+jobs = 5
+
+# VCSH ----
+include = cat ~/.config/mr/config.d/*
+
+[$HOME/.config/vcsh/repo.d/dotfiler.git]
+checkout = vcsh clone git@git.nak.co:home/dotfiler dotfiler
+fetch = git fetch -p
+
+[$HOME/.config/vcsh/repo.d/marcus.git]
+checkout = vcsh clone git@git.nak.co:home/marcus.git
+fetch = git fetch -p
+# END VCSH
+
+
+# DOT-FILES ----
+[bin/stow/admin]
+checkout = git clone 'git@git.nak.co:libR/admin.git' 'admin'
+fetch = git fetch -p
+
+[bin/stow/reporting]
+checkout = git clone 'git@git.nak.co:libR/reporting-tools.git' 'reporting'
+fetch = git fetch -p
+
+[bin/stow/workflow]
+checkout = git clone 'git@git.nak.co:home/workflow.git' 'workflow'
+fetch = git fetch -p
+
+[stow/git-tools]
+checkout = git clone 'git@git.nak.co:libR/git-tools.git' 'git-tools'
+fetch = git fetch -p
+# END DOT-FILES
+
+
+
+# REPOS ----
+[/mnt/repo/mab/anki]
+checkout = git clone 'git@git.nak.co:mabadgeley/anki.git' 'anki'
+
+[/mnt/repo/mab/api]
+checkout = git clone 'git@git.nak.co:mabadgeley/api.git' 'api'
+
+[/mnt/repo/mab/experimental]
+checkout = git clone 'git@git.nak.co:mabadgeley/experimental.git' 'experimental'
+
+# END REPOS
