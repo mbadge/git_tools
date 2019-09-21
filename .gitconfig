@@ -1,0 +1,13 @@
+[user]
+	name = MABadge
+	email = mabadgeley@gmail.com
+[push]
+	default = simple
+[credential]
+	helper = cache --timeout=1200
+[core]
+	editor = vim
+	autocrlf = input
+	excludesFile = /home/marcus/.gitignore
+[rebase]
+	stat = true
