@@ -11,3 +11,13 @@
 	excludesFile = /home/marcus/.gitignore
 [rebase]
 	stat = true
+[color]
+    ui = true
+    status = always
+[color "status"]
+    added = "green bold"
+    changed = "yellow bold"
+    untracked = "magenta bold"
+    unmerged = "red bold"
+    branch = "cyan bold"
+    header = "black bold"
