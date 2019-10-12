@@ -29,7 +29,7 @@ checkout = git clone 'git@git.nak.co:home/workflow.git' 'workflow'
 fetch = git fetch -p
 
 [stow/git-tools]
-checkout = git clone 'git@git.nak.co:libR/git-tools.git' 'git-tools'
+checkout = git clone 'git@git.nak.co:home/git-tools.git' 'git-tools'
 fetch = git fetch -p
 # END DOT-FILES
 
