@@ -23,6 +23,7 @@
 *.rda
 *.rds
 *.tar.gz
+*.p
 
 # Images
 *.html
