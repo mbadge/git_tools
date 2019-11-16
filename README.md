@@ -20,7 +20,7 @@ cd git-tools && make
 ```
 
 ---
-**clean-up: remove symlinks**
+**clean-up: remove managed symlinks**
 leaves source repo intact
 ```sh
 cd ~/stow/git-tools
