@@ -3,6 +3,5 @@
 # anchor top level files to ignore at most one file per line
 # same w/ directories; do NOT append a slash
 /.git
-/.gitlab
 README.md
 .cmds_used_to_setup_gitlab_project_files.sh
