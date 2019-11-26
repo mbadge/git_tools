@@ -1,11 +1,29 @@
+# Rules for what to not version control
+#
+# Patterns:
+# * `**/<dirname>` matches directories anywhere in the repo
+#
 # Comments canNOT appear after a pattern match, they must be on a new line
 
-# R project configs
+################################################################################
+####                             CONFIGS                                    ####
+################################################################################
+
+# DEV LANGUAGES ----
+# R project configs 
 .Rproj.user/
 .Rproj.user
 .Rhistory
 *.Rproj
 
+# ipython notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+
+################################################################################
+####                            FILETYPES                                   ####
+################################################################################
 # Tmp files
 *cache*
 *tmp*
@@ -13,7 +31,7 @@
 *.swo
 *.swn
 *.fuse_hidden*
-.ipynb_checkpoints  # https://stackoverflow.com/questions/36306017/should-ipynb-checkpoints-be-stored-in-git/39997938
+*.pyc
 
 # Data
 *.csv
@@ -22,8 +40,15 @@
 *.Rdata
 *.rda
 *.rds
+*.feather
 *.tar.gz
+*.tar
+*.7z
 *.p
+*.pickle
+# pytorch model files
+*.pt
+*.mat
 
 # Images
 *.html
@@ -35,6 +60,11 @@
 *.PNG
 *.tiff
 
+# Videos
+*.webm
+*.mp3
+*.mp4
+
 # Rendered Reports
 *.html
 *.pdf
@@ -44,14 +74,10 @@
 # Rendered html byproducts
 # TrueType Font
 *.ttf  
-*.css
+#*.css
 *.map
-*.js
+#*.js
 *.eot
 # Web Open Font Format
 *.woff 
 *.woff2
-
-# `**/<dirname>` matches directories anywhere in the repo
-#**/.depreciated  # I want to have the flexibility to depreciate code with a low threshold, but would still like it for reference
-
