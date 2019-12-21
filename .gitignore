@@ -9,7 +9,9 @@
 ####                             CONFIGS                                    ####
 ################################################################################
 
-# DEV LANGUAGES ----
+# DEV ----
+.vscode/
+
 # R project configs 
 .Rproj.user/
 .Rproj.user
