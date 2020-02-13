@@ -1,48 +1,47 @@
 # Git tools repository
 
-## Objective
+[**programs**](programs.md) and [**configs**](#configurations) to seamlessly interface with my git repositories
 
-[**configs**](#configurations) and [**programs**](#programs) to seamlessly interface with my git repositories
+---
 
 ## Setup
 
-this repo is intended to have symlinks farmed to user's home directory.  As such, the repo should be cloned into a subdir of `~/stow/`:
-
-Step 1: clone repo
+### step 1: clone repo
 
 ```sh
 cd ~/stow
 git clone git@git.nak.co:home/git-tools.git
 ```
 
-Step 2: farm symlinks
+> This repo is intended to have symlinks farmed to user's home directory. For this to work, this project directory should be a subdirectory of `~/stow/`
+
+### Step 2: farm symlinks
 
 ```sh
 cd git-tools && make
 ```
-----
 
-Clean-up:
+## Clean-up
 
-_remove managed symlinks_
+remove managed symlinks
 
 ```sh
 cd ~/stow/git-tools
 make clean
 ```
 
-* leaves source repo intact
+> leaves source repo intact
 
 ## Dependencies
 
 * **git**
-* **vcsh**: for managing *dot-file* repos (bare repos dispersed throughout `~/`)
-* **myrepos**: for managing *collections* of repos
-* GNU **stow** to farm symlinks to integrate isolated repos
+* **vcsh**: for managing bare *dot-file* repos (see [vcsh](vcsh.md))
+* **myrepos**: for managing **collections** of repos
+* GNU **stow** to farm symlinks
 
-----
+---
 
-## Configurations
+## Configuration
 
 ### git
 
@@ -58,16 +57,3 @@ make clean
 * `.mrconfig`  
 * `.config/mr/available.d`
 * `.config/mr/config.d`
-
-----
-
-## Programs
-
-**Location**: cli commands are stored in `bin/*.sh`
-
-### Types  
-
-* **singleton** git command wrappers for preferred options
-  * e.g, `gl.sh`, `glvv.sh`
-* routines with **multiple** git commands
-  * e.g., `git_rebase_local_remote.sh`
