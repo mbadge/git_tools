@@ -48,16 +48,8 @@ checkout = git clone 'git@git.nak.co:mabadgeley/experimental.git' 'experimental'
 
 
 # NFER ----
-[/mnt/repo/nfer/gan]
-checkout = git clone git@git.nak.co:nfer/path_gan.git 'path_gan'
-fetch = git fetch -p
-
 [/mnt/repo/nfer/path]
 checkout = git clone git@git.nak.co:nfer/nfer_path.git 'nfer_path'
-fetch = git fetch -p
-
-[/mnt/repo/nfer/subcellular-gene-localization]
-checkout = git clone git@git.nak.co:nfer/subcellular-gene-localization.git 'subcellular-gene-localization'
 fetch = git fetch -p
 
 
