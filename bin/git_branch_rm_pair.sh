@@ -17,7 +17,7 @@ error()   { echo "[ERROR]   $*" | tee -a "$LOG_FILE" >&2 ; }
 fatal()   { echo "[FATAL]   $*" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
 
 
-# Parse input ----
+# Parse input
 if [ $# -eq 0 ];
 then
     usage
@@ -26,8 +26,22 @@ fi
 
 RM_BRANCH=$1
 
+
+# Main
 info "Removing local and remote \"${RM_BRANCH}\" branches."
-git branch -d ${RM_BRANCH}
+
+# delete local branch
+git branch -d ${RM_BRANCH} || {
+    warning "Local ${RM_BRANCH} not synced w/ remote.  Are you sure this should be deleted?"
+    select yn in "Yes" "No"; do
+        case $yn in
+            Yes ) git branch -D ${RM_BRANCH}; break;;
+            No ) break;;
+        esac
+    done
+} 
+
+# delete remote branch
 warning "Local ${RM_BRANCH} deleted. Delete remote also?"
 select yn in "Yes" "No"; do
     case $yn in
