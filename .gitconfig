@@ -24,3 +24,5 @@
     unmerged = "red bold"
     branch = "cyan bold"
     header = "black bold"
+[pull]
+	ff = only
