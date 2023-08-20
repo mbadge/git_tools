@@ -14,7 +14,7 @@ REPO = "git-tools"
 
 STOW_DIR = /home/$(USER)/stow
 STOW_ARGS = --restow --verbose=1
-STOW_IGNORE_ARGS = --ignore='Makefile' --ignore='.*\.swp' --ignore='.git' --ignore='README.md'
+STOW_IGNORE_ARGS = --ignore='Makefile' --ignore='.*\.swp' --ignore='.git' --ignore='.*.md'
 
 
 # MAIN ----
