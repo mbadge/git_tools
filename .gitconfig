@@ -23,6 +23,6 @@
     untracked = "magenta bold"
     unmerged = "red bold"
     branch = "cyan bold"
-    header = "black bold"
+    header = "white"
 [pull]
 	ff = only
