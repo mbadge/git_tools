@@ -31,5 +31,6 @@ else
 	FORMAT_GIT_LOG="%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s"
 fi
 
+echo "git log --graph --pretty=\"${FORMAT_GIT_LOG}\" ${COMMIT_RANGE}"
 git log --graph --pretty="${FORMAT_GIT_LOG}" ${COMMIT_RANGE} 
 #						 ^ formatting variable requires enquoting

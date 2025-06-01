@@ -14,7 +14,8 @@
 
 
 function gl_() {
-    git log --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" $@
+    echo "git log --graph --pretty=format:\"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s\" $@"
+    git --no-pager log --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" $@
 }
 
 

@@ -14,7 +14,8 @@
 
 
 function glv() {
-    git log --stat --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" ${1}
+    git --no-pager log --stat --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" ${1}
+    echo -e "\ngit log --stat --graph --pretty=format:\"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s\" ${1}"
 }
 
 glv ${1:---all}

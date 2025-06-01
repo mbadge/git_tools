@@ -13,6 +13,7 @@
 # * `glvv`: -p
 
 function glvv() {
-    git log -p --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" ${1}
+    git --no-pager log -p --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" ${1}
+    echo -e "\ngit log -p --graph --pretty=format:\"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s\" ${1}"
 }
 glvv ${1:---all}
