@@ -23,7 +23,7 @@ fatal()   { echo "[FATAL]   $*" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
 for f in $(git status --porcelain | grep '^??' | sed 's/^?? //'); do
     if test -L "$f"
     then
-        test -L "$f" && echo $f >> .gitignore;
+        echo $f >> .gitignore;
     elif test -d "$f"
     then
         find ${f%/} -type l -not -exec grep -q "^{}$" .gitignore \; -print >> .gitignore

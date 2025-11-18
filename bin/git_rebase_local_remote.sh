@@ -37,7 +37,7 @@ function git_current_branch() {
 if [ $# -eq 0 ];
 then
     usage
-    exit 66
+    exit 1
 fi
 
 OUTDATED_DOWNSTREAM_BRANCH=$1

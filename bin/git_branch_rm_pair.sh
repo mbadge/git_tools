@@ -21,7 +21,7 @@ fatal()   { echo "[FATAL]   $*" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
 if [ $# -eq 0 ];
 then
     usage
-    exit 66
+    exit 1
 fi
 
 RM_BRANCH=$1
