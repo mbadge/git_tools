@@ -20,4 +20,4 @@ function glv() {
     } | less
 }
 
-glv ${1:---all}
+glv "${1:---all}"

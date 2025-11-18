@@ -24,11 +24,10 @@ RES=$(git remote -v | grep origin | sed -n '1p' | cut -f2 | cut -d" " -f1)
 if [[ "${RES}" =~ ^git@.* ]];
 then
     info "git repo starts with 'git'"
-    HTTPS_RES=$( sed 's/git@/https:\/\//' <<< ${RES} )
-    HTTPS_RES=$( sed 's/nak\.co:/nak.co\//' <<< ${HTTPS_RES} )
+    HTTPS_RES=$(sed -e 's/git@/https:\/\//' -e 's/nak\.co:/nak.co\//' <<< "${RES}")
 else
     info "git repo already starts with 'https'"
-    HTTPS_RES=${RES}
+    HTTPS_RES="${RES}"
 fi
 
 

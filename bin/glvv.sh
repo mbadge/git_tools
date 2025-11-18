@@ -18,4 +18,4 @@ function glvv() {
         git log -p --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" "${1}"
     } | less
 }
-glvv ${1:---all}
+glvv "${1:---all}"
