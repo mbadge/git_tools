@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # Git log inspection functions
 # Pretty formatting of either the selecting revision range or all commits

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -Eeuxo pipefail
+set -Eeuo pipefail
 IFS=$'\n\t'
 
 # include all unstaged files by indexing them as a new file
