@@ -23,13 +23,13 @@ function git_current_branch() {
     [[ $ret == 128 ]] && return  # no git repo.
     ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
   fi
-  echo ${ref#refs/heads/}
+  echo "${ref#refs/heads/}"
 }
 
 info "Run git push --set-upstream origin $(git_current_branch)?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git push --set-upstream origin $(git_current_branch); break;;
+        Yes ) git push --set-upstream origin "$(git_current_branch)"; break;;
         No ) exit;;
     esac
 done
