@@ -14,7 +14,7 @@
 
 
 function gl() {
-    git log --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" ${1}
+    git log --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" "${1}"
 }
 
-gl ${1:---all}
+gl "${1:---all}"

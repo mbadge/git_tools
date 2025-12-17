@@ -37,7 +37,7 @@ function git_current_branch() {
 if [ $# -eq 0 ];
 then
     usage
-    exit 66
+    exit 1
 fi
 
 OUTDATED_DOWNSTREAM_BRANCH=$1
@@ -55,8 +55,8 @@ fi
 # MAIN ----
 echo "Rebasing local and remote ${OUTDATED_DOWNSTREAM_BRANCH} onto ${DESIRED_UPSTREAM_BRANCH}"
 
-git checkout ${OUTDATED_DOWNSTREAM_BRANCH}
-git rebase ${DESIRED_UPSTREAM_BRANCH}
+git checkout "${OUTDATED_DOWNSTREAM_BRANCH}"
+git rebase "${DESIRED_UPSTREAM_BRANCH}"
 
 # Ask before rewriting remote history
 info "Local ${OUTDATED_DOWNSTREAM_BRANCH} rebased.  Should we also rebase the remote?"
@@ -67,4 +67,4 @@ select yn in "Yes" "No"; do
     esac
 done
 
-git checkout ${DESIRED_UPSTREAM_BRANCH}
+git checkout "${DESIRED_UPSTREAM_BRANCH}"

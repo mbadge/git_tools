@@ -14,7 +14,7 @@
 
 
 function glv() {
-    git log --stat --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" ${1}
+    git log --stat --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" "${1}"
 }
 
-glv ${1:---all}
+glv "${1:---all}"

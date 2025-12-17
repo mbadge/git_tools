@@ -21,17 +21,17 @@ fatal()   { echo "[FATAL]   $*" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
 if [ $# -eq 0 ];
 then
     usage
-    exit 66
+    exit 1
 fi
 
 RM_BRANCH=$1
 
 info "Removing local and remote \"${RM_BRANCH}\" branches."
-git branch -d ${RM_BRANCH}
+git branch -d "${RM_BRANCH}"
 warning "Local ${RM_BRANCH} deleted. Delete remote also?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git push origin --delete ${RM_BRANCH}; break;;
+        Yes ) git push origin --delete "${RM_BRANCH}"; break;;
         No ) break;;
     esac
 done
