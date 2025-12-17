@@ -42,8 +42,8 @@ if [ -e ~/bin/stow/sh/sourceMe/Cp.sh ]; then
 fi
 
 # Write output to a tmp file
-tmpfile=$(mktemp "${TMPDIR:-/tmp/}$(basename $0).XXX")
-echo ${HTTPS_RES} | tee -a ${tmpfile}
+tmpfile=$(mktemp "${TMPDIR:-/tmp/}$(basename "$0").XXX")
+echo "${HTTPS_RES}" | tee -a "${tmpfile}"
 
 # Copy output tmp file
-Cpf ${tmpfile}
+Cpf "${tmpfile}"

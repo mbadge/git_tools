@@ -28,7 +28,7 @@ error()   { echo -e "${FMT_TXT_RED}[ERROR]   $*${FMT_OFF}" ; }
 
 
 # PARAMS ----
-DIR_TMP_GIT="/tmp/$(basename ${0%.sh})"
+DIR_TMP_GIT="/tmp/$(basename "${0%.sh}")"
 
 
 # MAIN ----
@@ -37,9 +37,9 @@ title "Tmp GIT repo"
 section "Create test repo in ${DIR_TMP_GIT}"
 
 # Fresh start
-rm -rf ${DIR_TMP_GIT}
-mkdir ${DIR_TMP_GIT}
-cd ${DIR_TMP_GIT}
+rm -rf "${DIR_TMP_GIT}"
+mkdir "${DIR_TMP_GIT}"
+cd "${DIR_TMP_GIT}"
 echo -e "${FMT_CODE} \$ git flow init ${FMT_OFF}"
 
 # Set up local branches
