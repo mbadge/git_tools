@@ -32,7 +32,6 @@ else
 fi
 
 {
-    echo -e "git log --graph --pretty=\"${FORMAT_GIT_LOG}\" ${COMMIT_RANGE}\n"
     git log --graph --pretty="${FORMAT_GIT_LOG}" "${COMMIT_RANGE}"
 } | less
 #						 ^ formatting variable requires enquoting
