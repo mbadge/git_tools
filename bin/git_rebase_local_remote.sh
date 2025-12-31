@@ -58,13 +58,8 @@ echo "Rebasing local and remote ${OUTDATED_DOWNSTREAM_BRANCH} onto ${DESIRED_UPS
 git checkout "${OUTDATED_DOWNSTREAM_BRANCH}"
 git rebase "${DESIRED_UPSTREAM_BRANCH}"
 
-# Ask before rewriting remote history
-info "Local ${OUTDATED_DOWNSTREAM_BRANCH} rebased.  Should we also rebase the remote?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) git push --force; break;;
-        No ) break;;
-    esac
-done
+# Force push to remote
+info "Local ${OUTDATED_DOWNSTREAM_BRANCH} rebased. Force pushing to remote..."
+git push --force
 
 git checkout "${DESIRED_UPSTREAM_BRANCH}"

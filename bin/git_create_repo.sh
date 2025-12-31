@@ -288,20 +288,8 @@ git remote add origin "$SSH_URL"
 # Push to remote
 if [[ "$NO_INITIAL_COMMIT" == false ]]; then
   CURRENT_BRANCH=$(git_current_branch)
-  warning "Push to remote $PLATFORM repository?"
-  select yn in "Yes" "No"; do
-    case $yn in
-      Yes )
-        info "Pushing to origin/$CURRENT_BRANCH"
-        git push -u origin "$CURRENT_BRANCH"
-        break
-        ;;
-      No )
-        warning "Skipping push. You can push later with: git push -u origin $CURRENT_BRANCH"
-        break
-        ;;
-    esac
-  done
+  info "Pushing to origin/$CURRENT_BRANCH"
+  git push -u origin "$CURRENT_BRANCH"
 else
   info "Skipping push (no initial commit created)"
 fi
