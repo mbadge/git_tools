@@ -44,21 +44,13 @@ while IFS= read -r remote; do
     remotes_array+=("$remote")
 done <<< "$all_remotes"
 
-info "Run git push --set-upstream for branch \"${current_branch}\" to all remotes: ${remotes_array[*]}?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes )
-            for remote in "${remotes_array[@]}"; do
-                info "Pushing to remote: $remote"
-                if git push --set-upstream "$remote" "$current_branch"; then
-                    info "Successfully pushed to $remote"
-                else
-                    error "Failed to push to $remote"
-                fi
-            done
-            break
-            ;;
-        No ) exit;;
-    esac
+info "Pushing branch \"${current_branch}\" to all remotes: ${remotes_array[*]}"
+for remote in "${remotes_array[@]}"; do
+    info "Pushing to remote: $remote"
+    if git push --set-upstream "$remote" "$current_branch"; then
+        info "Successfully pushed to $remote"
+    else
+        error "Failed to push to $remote"
+    fi
 done
 

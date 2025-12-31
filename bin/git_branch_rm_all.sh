@@ -30,16 +30,8 @@ RM_BRANCH=$1
 # Main
 info "Removing local and remote \"${RM_BRANCH}\" branches from all remotes."
 
-# delete local branch
-git branch -d "${RM_BRANCH}" || {
-    warning "Local ${RM_BRANCH} not synced w/ remote. Are you sure this should be deleted?"
-    select yn in "Yes" "No"; do
-        case $yn in
-            Yes ) git branch -D "${RM_BRANCH}"; break;;
-            No ) exit 0;;
-        esac
-    done
-}
+# delete local branch (force delete to avoid sync check)
+git branch -D "${RM_BRANCH}"
 
 # Find all remotes that have this branch
 info "Checking all remotes for branch \"${RM_BRANCH}\"..."
@@ -67,24 +59,13 @@ if [ ${#remotes_with_branch[@]} -eq 0 ]; then
     exit 0
 fi
 
-# Ask user to confirm deletion from all remotes
-warning "Local ${RM_BRANCH} deleted. Delete from all remotes (${remotes_with_branch[*]})?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes )
-            for remote in "${remotes_with_branch[@]}"; do
-                info "Deleting branch \"${RM_BRANCH}\" from remote: $remote"
-                if git push "$remote" --delete "${RM_BRANCH}"; then
-                    info "Successfully deleted from $remote"
-                else
-                    error "Failed to delete from $remote"
-                fi
-            done
-            break
-            ;;
-        No )
-            info "Skipped remote deletion."
-            break
-            ;;
-    esac
+# Delete from all remotes
+info "Deleting branch \"${RM_BRANCH}\" from all remotes: ${remotes_with_branch[*]}"
+for remote in "${remotes_with_branch[@]}"; do
+    info "Deleting branch \"${RM_BRANCH}\" from remote: $remote"
+    if git push "$remote" --delete "${RM_BRANCH}"; then
+        info "Successfully deleted from $remote"
+    else
+        error "Failed to delete from $remote"
+    fi
 done
