@@ -41,6 +41,30 @@ make clean
 
 ---
 
+## Testing
+
+Automated tests are available for the shell scripts in `bin/`.
+
+### Run Tests
+
+```sh
+# First time setup
+./test/setup_bats.sh
+
+# Run all tests
+./test/run_tests.sh
+
+# Run specific tests
+./test/run_tests.sh --filter git_url
+
+# Verbose output
+./test/run_tests.sh --verbose
+```
+
+See [test/README.md](test/README.md) for detailed testing documentation.
+
+---
+
 ## Configuration
 
 ### git
