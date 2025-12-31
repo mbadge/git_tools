@@ -3,7 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 #/ Usage: ./git_push_set_upstream.sh
-#/ Description: designate upstream remote as the origin {current branch} and push
+#/ Description: designate upstream remote for all remotes {current branch} and push
 #/ Options:
 #/   --help: Display this help message
 usage() { grep '^#/' "$0" | cut -c4- ; exit 0 ; }
@@ -11,6 +11,9 @@ expr "$*" : ".*--help" > /dev/null && usage
 
 readonly LOG_FILE="/tmp/$(basename "$0").log"
 info()    { echo "[INFO]    $*" | tee -a "$LOG_FILE" >&2 ; }
+warning() { echo "[WARNING] $*" | tee -a "$LOG_FILE" >&2 ; }
+error()   { echo "[ERROR]   $*" | tee -a "$LOG_FILE" >&2 ; }
+fatal()   { echo "[FATAL]   $*" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
 
 
 # Identify Branch
@@ -26,10 +29,35 @@ function git_current_branch() {
   echo "${ref#refs/heads/}"
 }
 
-info "Run git push --set-upstream origin $(git_current_branch)?"
+current_branch=$(git_current_branch)
+
+# Get all remotes
+all_remotes=$(git remote)
+
+if [ -z "$all_remotes" ]; then
+    fatal "No remotes configured."
+fi
+
+# Convert to array for display
+remotes_array=()
+while IFS= read -r remote; do
+    remotes_array+=("$remote")
+done <<< "$all_remotes"
+
+info "Run git push --set-upstream for branch \"${current_branch}\" to all remotes: ${remotes_array[*]}?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git push --set-upstream origin "$(git_current_branch)"; break;;
+        Yes )
+            for remote in "${remotes_array[@]}"; do
+                info "Pushing to remote: $remote"
+                if git push --set-upstream "$remote" "$current_branch"; then
+                    info "Successfully pushed to $remote"
+                else
+                    error "Failed to push to $remote"
+                fi
+            done
+            break
+            ;;
         No ) exit;;
     esac
 done
