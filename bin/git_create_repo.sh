@@ -21,6 +21,7 @@ IFS=$'\n\t'
 #/   --in-place: Use current directory instead of creating new one
 #/   --no-register: Skip myrepos registration
 #/   --no-initial-commit: Skip creating initial commit
+#/   --no-browser: Skip opening URL in browser
 usage() { grep '^#/' "$0" | cut -c4- ; exit 0 ; }
 expr "$*" : ".*--help" > /dev/null && usage
 
@@ -29,6 +30,13 @@ info()    { echo "[INFO]    $*" | tee -a "$LOG_FILE" >&2 ; }
 warning() { echo "[WARNING] $*" | tee -a "$LOG_FILE" >&2 ; }
 error()   { echo "[ERROR]   $*" | tee -a "$LOG_FILE" >&2 ; }
 fatal()   { echo "[FATAL]   $*" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
+
+# ANSI color codes for highlighting
+readonly FMT_BOLD="\e[1m"
+readonly FMT_GREEN="\e[1;32m"
+readonly FMT_CYAN="\e[1;36m"
+readonly FMT_YELLOW="\e[1;33m"
+readonly FMT_OFF="\e[0m"
 
 # Utility function: Get current git branch (from git_push_set_upstream.sh)
 function git_current_branch() {
@@ -50,6 +58,7 @@ ORG=""
 IN_PLACE=false
 NO_REGISTER=false
 NO_INITIAL_COMMIT=false
+NO_BROWSER=false
 REPO_NAME=""
 
 # Parse arguments
@@ -85,6 +94,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --no-initial-commit)
       NO_INITIAL_COMMIT=true
+      shift
+      ;;
+    --no-browser)
+      NO_BROWSER=true
       shift
       ;;
     -*)
@@ -306,11 +319,22 @@ else
 fi
 
 # Success summary
-info "================================================"
-info "Repository created successfully!"
-info "  Name: $REPO_NAME"
-info "  Platform: $PLATFORM"
-info "  Visibility: $VISIBILITY"
-info "  URL: $HTTP_URL"
-info "  Local path: $REPO_DIR"
-info "================================================"
+echo ""
+echo -e "${FMT_GREEN}================================================${FMT_OFF}"
+echo -e "${FMT_GREEN}Repository created successfully!${FMT_OFF}"
+echo -e "  ${FMT_BOLD}Name:${FMT_OFF} $REPO_NAME"
+echo -e "  ${FMT_BOLD}Platform:${FMT_OFF} $PLATFORM"
+echo -e "  ${FMT_BOLD}Visibility:${FMT_OFF} $VISIBILITY"
+echo -e "  ${FMT_BOLD}Local path:${FMT_OFF} $REPO_DIR"
+echo ""
+echo -e "  ${FMT_CYAN}${FMT_BOLD}URL: $HTTP_URL${FMT_OFF}"
+echo ""
+echo -e "${FMT_GREEN}================================================${FMT_OFF}"
+
+# Open in browser
+if [[ "$NO_BROWSER" == false ]] && command -v google-chrome >/dev/null 2>&1; then
+  info "Opening repository in Google Chrome..."
+  google-chrome "$HTTP_URL" >/dev/null 2>&1 &
+elif [[ "$NO_BROWSER" == false ]]; then
+  warning "google-chrome not found, skipping browser open"
+fi
