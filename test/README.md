@@ -130,10 +130,33 @@ Current test files:
 - `git_ignore_symlinks.bats`: Tests for git_ignore_symlinks.sh
 - `git_branch_rm_pair.bats`: Tests for git_branch_rm_pair.sh
 - `git_mr_wrappers.bats`: Tests for git_fetch_all.sh and git_status_all.sh
+- `git_wrappers.bats`: Tests for gl.sh and gd.sh
 
 ## CI/CD Integration
 
-To integrate with CI/CD pipelines, add this to your workflow:
+Tests are automatically run on every push and pull request through:
+
+### GitHub Actions
+
+Workflow file: `.github/workflows/test.yml`
+
+- Runs on every push and pull request
+- Uses Ubuntu latest
+- Executes all tests with verbose output
+- Shows test results in the Actions tab
+
+### GitLab CI
+
+Configuration file: `.gitlab-ci.yml`
+
+- Runs on all branches and merge requests
+- Tests on multiple bash versions (4 & 5)
+- Caches BATS libraries for faster builds
+- Generates JUnit test reports
+
+### Manual CI/CD Setup
+
+If you need to add tests to another CI/CD system:
 
 ```bash
 # Setup and run tests
