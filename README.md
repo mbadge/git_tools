@@ -1,5 +1,7 @@
 # Git tools repository
 
+[![Shell Tests](https://github.com/mbadge/git_tools/actions/workflows/test.yml/badge.svg)](https://github.com/mbadge/git_tools/actions/workflows/test.yml)
+
 [**programs**](programs.md) and [**configs**](#configurations) to seamlessly interface with my git repositories
 
 ---
@@ -38,6 +40,35 @@ make clean
 * **vcsh**: for managing bare *dot-file* repos (see [vcsh](vcsh.md))
 * **myrepos**: for managing **collections** of repos
 * GNU **stow** to farm symlinks
+
+---
+
+## Testing
+
+Automated tests are available for the shell scripts in `bin/`. Tests run automatically on every push via GitHub Actions and GitLab CI.
+
+### Run Tests Locally
+
+```sh
+# First time setup
+./test/setup_bats.sh
+
+# Run all tests
+./test/run_tests.sh
+
+# Run specific tests
+./test/run_tests.sh --filter git_url
+
+# Verbose output
+./test/run_tests.sh --verbose
+```
+
+### CI/CD
+
+- **GitHub Actions**: Tests run on every push and pull request
+- **GitLab CI**: Tests run on multiple bash versions (4 & 5)
+
+See [test/README.md](test/README.md) for detailed testing documentation.
 
 ---
 
