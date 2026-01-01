@@ -60,11 +60,11 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Find test files
+# Find test files (exclude lib directory to avoid running BATS's own tests)
 if [ -n "${FILTER}" ]; then
-    TEST_FILES=$(find "${SCRIPT_DIR}" -name "${FILTER}*.bats" -type f)
+    TEST_FILES=$(find "${SCRIPT_DIR}" -name "${FILTER}*.bats" -type f -not -path "*/lib/*")
 else
-    TEST_FILES=$(find "${SCRIPT_DIR}" -name "*.bats" -type f)
+    TEST_FILES=$(find "${SCRIPT_DIR}" -name "*.bats" -type f -not -path "*/lib/*")
 fi
 
 if [ -z "${TEST_FILES}" ]; then

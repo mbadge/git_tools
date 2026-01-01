@@ -6,10 +6,10 @@ TEST_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${TEST_DIR}/.." && pwd)"
 BIN_DIR="${PROJECT_ROOT}/bin"
 
-# Load BATS libraries
-load "lib/bats-support/load"
-load "lib/bats-assert/load"
-load "lib/bats-file/load"
+# Load BATS libraries using absolute paths
+load "${TEST_DIR}/lib/bats-support/load"
+load "${TEST_DIR}/lib/bats-assert/load"
+load "${TEST_DIR}/lib/bats-file/load"
 
 # Setup function - runs before each test
 setup() {
@@ -38,12 +38,15 @@ create_mock_git_repo() {
     local repo_dir="${1:-${TEST_TEMP_DIR}/test-repo}"
     mkdir -p "${repo_dir}"
     cd "${repo_dir}"
-    git init
+    git init >/dev/null 2>&1
     git config user.email "test@example.com"
     git config user.name "Test User"
+    # Disable commit signing for tests
+    git config commit.gpgsign false
+    git config gpg.format ""
     echo "# Test Repo" > README.md
-    git add README.md
-    git commit -m "Initial commit"
+    git add README.md >/dev/null 2>&1
+    git commit -m "Initial commit" >/dev/null 2>&1
     echo "${repo_dir}"
 }
 
@@ -52,8 +55,8 @@ create_mock_git_repo_with_remote() {
     local repo_dir="${1:-${TEST_TEMP_DIR}/test-repo}"
     local remote_url="${2:-git@github.com:user/repo.git}"
 
-    create_mock_git_repo "${repo_dir}"
-    git remote add origin "${remote_url}"
+    create_mock_git_repo "${repo_dir}" >/dev/null
+    git remote add origin "${remote_url}" >/dev/null 2>&1
     echo "${repo_dir}"
 }
 
