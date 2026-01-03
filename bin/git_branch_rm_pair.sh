@@ -30,22 +30,9 @@ RM_BRANCH=$1
 # Main
 info "Removing local and remote \"${RM_BRANCH}\" branches."
 
-# delete local branch
-git branch -d "${RM_BRANCH}" || {
-    warning "Local ${RM_BRANCH} not synced w/ remote.  Are you sure this should be deleted?"
-    select yn in "Yes" "No"; do
-        case $yn in
-            Yes ) git branch -D "${RM_BRANCH}"; break;;
-            No ) break;;
-        esac
-    done
-}
+# delete local branch (force delete to avoid sync check)
+git branch -D "${RM_BRANCH}"
 
 # delete remote branch
-warning "Local ${RM_BRANCH} deleted. Delete remote also?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) git push origin --delete "${RM_BRANCH}"; break;;
-        No ) break;;
-    esac
-done
+info "Deleting remote branch ${RM_BRANCH}"
+git push origin --delete "${RM_BRANCH}"

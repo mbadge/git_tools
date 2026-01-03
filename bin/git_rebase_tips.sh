@@ -64,13 +64,9 @@ do
     git rebase "${DESIRED_UPSTREAM}"
 done
 
-echo "Local tips rebased. Should we also rebase the remotes?"
-
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) for i in "${branch_tips[@]}"; do git checkout "${i}" && git push --force; done; break;;
-        No ) break;;
-    esac
+echo "Local tips rebased. Force pushing to remotes..."
+for i in "${branch_tips[@]}"; do
+    git checkout "${i}" && git push --force
 done
 
 git checkout "${DESIRED_UPSTREAM}"
