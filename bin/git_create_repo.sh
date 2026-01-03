@@ -27,7 +27,18 @@ expr "$*" : ".*--help" > /dev/null && usage
 
 # Source shared coloring library
 readonly LOG_FILE="/tmp/$(basename "$0").log"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Get script directory - handle both direct execution and execution via PATH/alias
+_script_path="${BASH_SOURCE[0]:-$0}"
+if [[ ! "$_script_path" =~ ^/ ]]; then
+  if command -v "$_script_path" >/dev/null 2>&1; then
+    _script_path="$(command -v "$_script_path")"
+  fi
+fi
+if [[ -L "$_script_path" ]]; then
+  _script_path="$(readlink -f "$_script_path" 2>/dev/null || readlink "$_script_path" 2>/dev/null || echo "$_script_path")"
+fi
+SCRIPT_DIR="$(cd "$(dirname "$_script_path")" && pwd)"
+unset _script_path
 source "${SCRIPT_DIR}/colors.sh"
 
 # Utility function: Get current git branch (from git_push_set_upstream.sh)
@@ -118,8 +129,20 @@ command -v git >/dev/null 2>&1 || fatal "git is not installed"
 command -v curl >/dev/null 2>&1 || fatal "curl is not installed"
 command -v jq >/dev/null 2>&1 || fatal "jq is not installed"
 
-# Get script directory to locate token files
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Get script directory to locate token files (reuse SCRIPT_DIR from above if already set)
+if [[ -z "${SCRIPT_DIR:-}" ]]; then
+  _script_path="${BASH_SOURCE[0]:-$0}"
+  if [[ ! "$_script_path" =~ ^/ ]]; then
+    if command -v "$_script_path" >/dev/null 2>&1; then
+      _script_path="$(command -v "$_script_path")"
+    fi
+  fi
+  if [[ -L "$_script_path" ]]; then
+    _script_path="$(readlink -f "$_script_path" 2>/dev/null || readlink "$_script_path" 2>/dev/null || echo "$_script_path")"
+  fi
+  SCRIPT_DIR="$(cd "$(dirname "$_script_path")" && pwd)"
+  unset _script_path
+fi
 TOOLS_DIR="$(dirname "$SCRIPT_DIR")"
 
 # Read API token

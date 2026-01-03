@@ -2,6 +2,27 @@
 # Shared coloring and output formatting library for git-tools scripts
 # Source this file in your script to get consistent colored output
 
+# Helper function to get the script directory, handling both direct execution and PATH/alias execution
+# Usage: SCRIPT_DIR=$(get_script_dir)
+get_script_dir() {
+  local script_path="${BASH_SOURCE[1]:-${BASH_SOURCE[0]:-$0}}"
+  # If it's not an absolute path, try to find it
+  if [[ ! "$script_path" =~ ^/ ]]; then
+    # Try to find the script in PATH
+    if command -v "$script_path" >/dev/null 2>&1; then
+      script_path="$(command -v "$script_path")"
+    elif [[ -f "$script_path" ]]; then
+      # If it's a relative path, make it absolute
+      script_path="$(cd "$(dirname "$script_path")" && pwd)/$(basename "$script_path")"
+    fi
+  fi
+  # Resolve symlinks to get the real path
+  if [[ -L "$script_path" ]]; then
+    script_path="$(readlink -f "$script_path" 2>/dev/null || readlink "$script_path" 2>/dev/null || echo "$script_path")"
+  fi
+  echo "$(cd "$(dirname "$script_path")" && pwd)"
+}
+
 # Color constants ----
 # ANSI escape codes for terminal colors
 # compound style schema: FMT_[STYLE]
