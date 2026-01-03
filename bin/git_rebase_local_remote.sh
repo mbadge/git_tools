@@ -11,11 +11,10 @@ IFS=$'\n\t'
 usage() { grep '^#/' "$0" | cut -c4- ; exit 0 ; }
 expr "$*" : ".*--help" > /dev/null && usage
 
+# Source shared coloring library
 readonly LOG_FILE="/tmp/$(basename "$0").log"
-info()    { echo "[INFO]    $*" | tee -a "$LOG_FILE" >&2 ; }
-warning() { echo "[WARNING] $*" | tee -a "$LOG_FILE" >&2 ; }
-error()   { echo "[ERROR]   $*" | tee -a "$LOG_FILE" >&2 ; }
-fatal()   { echo "[FATAL]   $*" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/colors.sh"
 
 
 # Util fxns ----
@@ -53,7 +52,7 @@ fi
 
 
 # MAIN ----
-echo "Rebasing local and remote ${OUTDATED_DOWNSTREAM_BRANCH} onto ${DESIRED_UPSTREAM_BRANCH}"
+info "Rebasing local and remote ${OUTDATED_DOWNSTREAM_BRANCH} onto ${DESIRED_UPSTREAM_BRANCH}"
 
 git checkout "${OUTDATED_DOWNSTREAM_BRANCH}"
 git rebase "${DESIRED_UPSTREAM_BRANCH}"

@@ -25,18 +25,10 @@ IFS=$'\n\t'
 usage() { grep '^#/' "$0" | cut -c4- ; exit 0 ; }
 expr "$*" : ".*--help" > /dev/null && usage
 
+# Source shared coloring library
 readonly LOG_FILE="/tmp/$(basename "$0").log"
-info()    { echo "[INFO]    $*" | tee -a "$LOG_FILE" >&2 ; }
-warning() { echo "[WARNING] $*" | tee -a "$LOG_FILE" >&2 ; }
-error()   { echo "[ERROR]   $*" | tee -a "$LOG_FILE" >&2 ; }
-fatal()   { echo "[FATAL]   $*" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
-
-# ANSI color codes for highlighting
-readonly FMT_BOLD="\e[1m"
-readonly FMT_GREEN="\e[1;32m"
-readonly FMT_CYAN="\e[1;36m"
-readonly FMT_YELLOW="\e[1;33m"
-readonly FMT_OFF="\e[0m"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/colors.sh"
 
 # Utility function: Get current git branch (from git_push_set_upstream.sh)
 function git_current_branch() {
