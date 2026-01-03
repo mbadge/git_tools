@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # Git log inspection functions
 # Pretty formatting of either the selecting revision range or all commits
@@ -15,7 +17,6 @@
 
 function glv() {
     {
-        echo -e "git log --stat --graph --pretty=format:\"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s\" ${1}\n"
         git log --stat --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" "${1}"
     } | less
 }

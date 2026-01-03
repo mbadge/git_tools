@@ -15,6 +15,6 @@ COMMIT_RANGE=${1:---all}
 FORMAT_GIT_LOG="%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s"
 
 watch --color -n1 --no-title \
-    "echo 'Command: git log --stat --color --graph --oneline --pretty=\"${FORMAT_GIT_LOG}\" ${COMMIT_RANGE}'; echo; git log --stat --color --graph --oneline --pretty=\"${FORMAT_GIT_LOG}\" ${COMMIT_RANGE}"
+    "git log --stat --color --graph --oneline --pretty=\"${FORMAT_GIT_LOG}\" ${COMMIT_RANGE}"
 #                                               ^ enquote expansion of formatting variable
 

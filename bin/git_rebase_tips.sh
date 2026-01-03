@@ -45,7 +45,7 @@ function git_current_branch() {
     [[ $ret == 128 ]] && return  # no git repo.
     ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
   fi
-  echo ${ref#refs/heads/}
+  echo "${ref#refs/heads/}"
 }
 
 
@@ -58,19 +58,15 @@ DESIRED_UPSTREAM=tip
 branch_tips=$(grep tip- <(git branch | cut -f2- -d' ' | sed "s/^\\s//") )
 
 echo -e "Rebasing tip branches:\n${branch_tips}"
-for i in ${branch_tips[@]}
+for i in "${branch_tips[@]}"
 do
-    git checkout ${i}
-    git rebase ${DESIRED_UPSTREAM}
+    git checkout "${i}"
+    git rebase "${DESIRED_UPSTREAM}"
 done
 
-echo "Local tips rebased. Should we also rebase the remotes?"
-
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) for i in ${branch_tips[@]}; do git checkout ${i} && git push --force; done; break;;
-        No ) break;;
-    esac
+echo "Local tips rebased. Force pushing to remotes..."
+for i in "${branch_tips[@]}"; do
+    git checkout "${i}" && git push --force
 done
 
-git checkout ${DESIRED_UPSTREAM}
+git checkout "${DESIRED_UPSTREAM}"

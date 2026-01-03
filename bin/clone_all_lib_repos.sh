@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
 git clone git@git.nak.co:libR/MyUtils.git
 git clone git@git.nak.co:libR/vizR.git
 git clone git@git.nak.co:libR/MlAnalysis.git

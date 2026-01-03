@@ -14,7 +14,7 @@ REPO = "git-tools"
 
 STOW_DIR = /home/$(USER)/stow
 STOW_ARGS = --restow --verbose=1
-STOW_IGNORE_ARGS = --ignore='Makefile' --ignore='.*\.swp' --ignore='.git' --ignore='.*.md'
+STOW_IGNORE_ARGS = --ignore='Makefile' --ignore='.*\.swp' --ignore='.git' --ignore='.*.md' --ignore=".gitignore" --ignore='templates' --ignore='.claude'
 
 
 # MAIN ----
@@ -39,3 +39,13 @@ show:
 clean:
 	@echo "Discarding symlinks from repo $(REPO)"
 	cd .. && stow --delete $(REPO)
+
+.PHONY: docs
+docs:
+	@echo "Building Sphinx documentation"
+	$(MAKE) -C docs html
+
+.PHONY: docs-show
+docs-show: docs
+	@echo "Opening documentation in browser"
+	xdg-open docs/_build/html/index.html || open docs/_build/html/index.html || echo "Please open docs/_build/html/index.html in your browser"

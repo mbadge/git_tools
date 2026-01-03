@@ -1,0 +1,47 @@
+stages:
+  - test
+
+# Run shell tests using BATS
+shell-tests:
+  stage: test
+  image: ubuntu:latest
+
+  before_script:
+    - apt-get update -qq
+    - apt-get install -y -qq git bash
+    - chmod +x ./test/setup_bats.sh ./test/run_tests.sh
+
+  script:
+    - ./test/setup_bats.sh
+    - ./test/run_tests.sh --verbose
+
+  only:
+    - branches
+    - merge_requests
+
+  artifacts:
+    when: always
+    reports:
+      junit: test/results/*.xml
+    expire_in: 1 week
+
+  cache:
+    key: bats-libs
+    paths:
+      - test/lib/
+
+# Optional: Run tests on multiple bash versions
+shell-tests:bash-5:
+  extends: shell-tests
+  image: bash:5
+  before_script:
+    - apk add --no-cache git
+    - chmod +x ./test/setup_bats.sh ./test/run_tests.sh
+
+shell-tests:bash-4:
+  extends: shell-tests
+  image: bash:4
+  before_script:
+    - apk add --no-cache git
+    - chmod +x ./test/setup_bats.sh ./test/run_tests.sh
+  allow_failure: true

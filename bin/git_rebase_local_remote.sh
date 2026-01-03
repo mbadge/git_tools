@@ -29,7 +29,7 @@ function git_current_branch() {
     [[ $ret == 128 ]] && return  # no git repo.
     ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
   fi
-  echo ${ref#refs/heads/}
+  echo "${ref#refs/heads/}"
 }
 
 
@@ -55,16 +55,11 @@ fi
 # MAIN ----
 echo "Rebasing local and remote ${OUTDATED_DOWNSTREAM_BRANCH} onto ${DESIRED_UPSTREAM_BRANCH}"
 
-git checkout ${OUTDATED_DOWNSTREAM_BRANCH}
-git rebase ${DESIRED_UPSTREAM_BRANCH}
+git checkout "${OUTDATED_DOWNSTREAM_BRANCH}"
+git rebase "${DESIRED_UPSTREAM_BRANCH}"
 
-# Ask before rewriting remote history
-info "Local ${OUTDATED_DOWNSTREAM_BRANCH} rebased.  Should we also rebase the remote?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) git push --force; break;;
-        No ) break;;
-    esac
-done
+# Force push to remote
+info "Local ${OUTDATED_DOWNSTREAM_BRANCH} rebased. Force pushing to remote..."
+git push --force
 
-git checkout ${DESIRED_UPSTREAM_BRANCH}
+git checkout "${DESIRED_UPSTREAM_BRANCH}"

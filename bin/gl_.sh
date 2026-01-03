@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # Git log inspection functions
 # Pretty formatting of either the selecting revision range or all commits
@@ -14,9 +16,9 @@
 
 
 function gl_() {
-    echo "git log --graph --pretty=format:\"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s\" $@"
-    git --no-pager log --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" $@
+    echo "git log --graph --pretty=format:\"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s\" $*"
+    git --no-pager log --graph --pretty=format:"%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s" "$@"
 }
 
 
-gl_ $@
+gl_ "$@"

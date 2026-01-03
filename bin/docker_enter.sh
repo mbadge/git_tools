@@ -20,4 +20,4 @@ fi
 CONTAINER=$1
 
 # MAIN
-docker exec -it ${CONTAINER} bash
+docker exec -it "${CONTAINER}" bash
