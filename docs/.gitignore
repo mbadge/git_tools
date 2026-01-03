@@ -1,0 +1,10 @@
+# Sphinx build directory
+_build/
+
+# Sphinx cache
+.doctrees/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
