@@ -14,7 +14,7 @@ REPO = "git-tools"
 
 STOW_DIR = /home/$(USER)/stow
 STOW_ARGS = --restow --verbose=1
-STOW_IGNORE_ARGS = --ignore='Makefile' --ignore='.*\.swp' --ignore='.git' --ignore='.*.md' --ignore=".gitignore" --ignore='templates' --ignore='.claude'
+# Note: Ignore patterns are defined in .stow-local-ignore
 
 
 # MAIN ----
@@ -22,18 +22,16 @@ STOW_IGNORE_ARGS = --ignore='Makefile' --ignore='.*\.swp' --ignore='.git' --igno
 all: build
 
 .PHONY: build
-build: 
+build:
 	@echo Farming symlinks to $(STOW_DIR)/$(REPO) files
-	stow $(STOW_ARGS) $(STOW_IGNORE_ARGS) --dir=$(STOW_DIR)  \
-		$(REPO)
+	stow $(STOW_ARGS) --dir=$(STOW_DIR) $(REPO)
 	
 	# check for bogus symlinks (pointing to non-existent files)
 	chkstow -b
 
 .PHONY: show
 show:
-	stow --simulate $(STOW_ARGS) $(STOW_IGNORE_ARGS) --dir=$(STOW_DIR)  \
-		$(REPO)
+	stow --simulate $(STOW_ARGS) --dir=$(STOW_DIR) $(REPO)
 
 .PHONY: clean
 clean:

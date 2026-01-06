@@ -2,8 +2,29 @@
 
 # anchor top level files by prepending w/ "/"
 # do NOT append a slash to directories
+
+# Version control and repo metadata
 /.git
+/.gitignore
+/.gitmodules
+/.github
+/.gitlab
+/.gitlab-ci.yml
+
+# Build and development files
+/Makefile
+.*\.swp$
+
+# Conflicts with other stow packages
+/bin/colors.sh
+
+# Documentation
+/docs
 /test
-README.md
+.*\.md$
+
+# Project metadata
 /templates
 /snippets
+/.claude
+.*\.json$
