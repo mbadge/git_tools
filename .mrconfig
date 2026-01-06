@@ -36,33 +36,77 @@ fetch = git fetch -p
 
 
 # REPOS ----
+
+# cadenzai projects
+[/mnt/repo/cadenzai/claude-companeeds-pilot]
+checkout = git clone 'git@github.com:cadenzai/claude-companeeds-pilot.git' 'claude-companeeds-pilot'
+
+[/mnt/repo/cadenzai/companeeds]
+checkout = git clone 'git@github.com:cadenzai/companeeds.git' 'companeeds'
+
+[/mnt/repo/cadenzai/companeeds-claude-agent]
+checkout = git clone 'git@github.com:cadenzai/companeeds-claude-agent.git' 'companeeds-claude-agent'
+
+[/mnt/repo/cadenzai/eval-pilot]
+checkout = git clone 'git@git.nak.co:mab/cadenzai/eval-pilot.git' 'eval-pilot'
+
+[/mnt/repo/cadenzai/memrail-agent]
+checkout = git clone 'git@github.com:cadenzai/memrail-agent.git' 'memrail-agent'
+
+[/mnt/repo/cadenzai/memrail-api]
+checkout = git clone 'git@github.com:cadenzai/memrail-api.git' 'memrail-api'
+
+# mab projects
 [/mnt/repo/mab/anki]
 checkout = git clone 'git@git.nak.co:mabadgeley/anki.git' 'anki'
 
 [/mnt/repo/mab/api]
 checkout = git clone 'git@git.nak.co:mabadgeley/api.git' 'api'
 
-[/mnt/repo/mab/experimental]
-checkout = git clone 'git@git.nak.co:mabadgeley/experimental.git' 'experimental'
+[/mnt/repo/mab/ble_govee]
+checkout = git clone 'git@git.nak.co:mabadgeley/ble_govee.git' 'ble_govee'
 
+[/mnt/repo/mab/experiment]
+checkout = git clone 'git@git.nak.co:thesis-projects/experimental.git' 'experiment'
 
+[/mnt/repo/mab/fitbit]
+checkout = git clone 'git@git.nak.co:mab/endpoints/fitbit.git' 'fitbit'
 
-# NFER ----
-[/mnt/repo/nfer/path]
-checkout = git clone git@git.nak.co:nfer/nfer_path.git 'nfer_path'
-fetch = git fetch -p
+[/mnt/repo/mab/garden-tracking]
+checkout = git clone 'git@git.nak.co:mab/projects/garden-tracking.git' 'garden-tracking'
 
+[/mnt/repo/mab/gforms]
+checkout = git clone 'git@git.nak.co:projR/gforms.git' 'gforms'
+
+[/mnt/repo/mab/gtakeout]
+checkout = git clone 'git@git.nak.co:mabadgeley/gtakeout.git' 'gtakeout'
+
+[/mnt/repo/mab/weather]
+checkout = git clone 'git@git.nak.co:mabadgeley/weather.git' 'weather'
+
+[/mnt/repo/mab/webcam]
+checkout = git clone 'git@git.nak.co:mab/projects/webcam.git' 'webcam'
+
+# old projects
+[/mnt/repo/old/tattva]
+checkout = git clone 'git@git.nak.co:mab/tattva.git' 'tattva'
 
 # END REPOS
-
-[/mnt/repo/lib/MyUtils]
-checkout = git clone 'git@git.nak.co:libR/MyUtils.git' 'MyUtils'
 
 [/mnt/repo/lib/AnalysisToolkit]
 checkout = git clone 'git@git.nak.co:libR/AnalysisToolkit.git' 'AnalysisToolkit'
 
 [/mnt/repo/lib/MlAnalysis]
 checkout = git clone 'git@git.nak.co:libR/MlAnalysis.git' 'MlAnalysis'
+
+[/mnt/repo/lib/MyUtils]
+checkout = git clone 'git@git.nak.co:libR/MyUtils.git' 'MyUtils'
+
+[/mnt/repo/lib/my_claude_agents]
+checkout = git clone 'git@git.nak.co:mab/my-claude-agent.git' 'my_claude_agents'
+
+[/mnt/repo/lib/my_utils]
+checkout = git clone 'git@git.nak.co:lib-py/my_utils.git' 'my_utils'
 
 [/mnt/repo/lib/R-DlAnalysis]
 checkout = git clone 'git@git.nak.co:libR/R-DlAnalysis.git' 'R-DlAnalysis'

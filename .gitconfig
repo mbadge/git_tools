@@ -10,6 +10,7 @@
 	autocrlf = input
 	excludesFile = /home/marcus/.gitignore
 	longpaths = true
+	sshCommand = ssh -i ~/.ssh/gitlab
 [rebase]
 	stat = true
 [color]
@@ -27,3 +28,5 @@
     header = "white"
 [pull]
 	ff = only
+[url "git@git.nak.co:"]
+	insteadOf = https://git.nak.co/
