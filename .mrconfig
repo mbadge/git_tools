@@ -60,9 +60,6 @@ checkout = git clone 'git@github.com:cadenzai/memrail-api.git' 'memrail-api'
 [/mnt/repo/mab/anki]
 checkout = git clone 'git@git.nak.co:mabadgeley/anki.git' 'anki'
 
-[/mnt/repo/mab/api]
-checkout = git clone 'git@git.nak.co:mabadgeley/api.git' 'api'
-
 [/mnt/repo/mab/ble_govee]
 checkout = git clone 'git@git.nak.co:mabadgeley/ble_govee.git' 'ble_govee'
 
@@ -86,10 +83,6 @@ checkout = git clone 'git@git.nak.co:mabadgeley/weather.git' 'weather'
 
 [/mnt/repo/mab/webcam]
 checkout = git clone 'git@git.nak.co:mab/projects/webcam.git' 'webcam'
-
-# old projects
-[/mnt/repo/old/tattva]
-checkout = git clone 'git@git.nak.co:mab/tattva.git' 'tattva'
 
 # END REPOS
 
@@ -115,6 +108,7 @@ checkout = git clone 'git@git.nak.co:libR/R-DlAnalysis.git' 'R-DlAnalysis'
 checkout = git clone 'git@git.nak.co:libR/testr.git' 'testr'
 
 [/mnt/repo/lib/thirdparty]
+skip = true
 checkout = git clone 'git@git.nak.co:libR/thirdparty.git' 'thirdparty'
 
 [/mnt/repo/lib/vizR]
