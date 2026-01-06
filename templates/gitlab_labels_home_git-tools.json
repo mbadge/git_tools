@@ -1,0 +1,123 @@
+[
+  {
+    "id": 187,
+    "name": "Acute",
+    "description": "",
+    "description_html": "",
+    "text_color": "#FFFFFF",
+    "color": "#D10069",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 188,
+    "name": "Bug",
+    "description": "",
+    "description_html": "",
+    "text_color": "#FFFFFF",
+    "color": "#AD8D43",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 189,
+    "name": "Documentation",
+    "description": "",
+    "description_html": "",
+    "text_color": "#FFFFFF",
+    "color": "#8E44AD",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 179,
+    "name": "Doing",
+    "description": "",
+    "description_html": "",
+    "text_color": "#1F1E24",
+    "color": "#69D100",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 324,
+    "name": "Enhancement",
+    "description": null,
+    "description_html": "",
+    "text_color": "#1F1E24",
+    "color": "#A8D695",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 190,
+    "name": "Experiment",
+    "description": "",
+    "description_html": "",
+    "text_color": "#FFFFFF",
+    "color": "#34495E",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 191,
+    "name": "Feature",
+    "description": "",
+    "description_html": "",
+    "text_color": "#FFFFFF",
+    "color": "#428BCA",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 192,
+    "name": "High Yield",
+    "description": "",
+    "description_html": "",
+    "text_color": "#FFFFFF",
+    "color": "#A295D6",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 193,
+    "name": "Scale",
+    "description": "",
+    "description_html": "",
+    "text_color": "#FFFFFF",
+    "color": "#AD4363",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 178,
+    "name": "To Do",
+    "description": null,
+    "description_html": "",
+    "text_color": "#1F1E24",
+    "color": "#F0AD4E",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  },
+  {
+    "id": 194,
+    "name": "Workflow",
+    "description": "",
+    "description_html": "",
+    "text_color": "#1F1E24",
+    "color": "#D1D100",
+    "subscribed": false,
+    "priority": null,
+    "is_project_label": false
+  }
+]
