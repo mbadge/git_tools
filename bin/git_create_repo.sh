@@ -181,9 +181,9 @@ else
   cd "$REPO_NAME"
 fi
 
-# Initialize git repository
+# Initialize git repository with main as default branch
 info "Initializing git repository"
-git init
+git init -b main
 
 # Create initial commit if requested
 if [[ "$NO_INITIAL_COMMIT" == false ]]; then
@@ -300,11 +300,16 @@ fi
 info "Adding remote origin: $SSH_URL"
 git remote add origin "$SSH_URL"
 
-# Push to remote
+# Push to remote and create develop branch
 if [[ "$NO_INITIAL_COMMIT" == false ]]; then
   CURRENT_BRANCH=$(git_current_branch)
   info "Pushing to origin/$CURRENT_BRANCH"
   git push -u origin "$CURRENT_BRANCH"
+
+  # Create and push develop branch
+  info "Creating develop branch"
+  git checkout -b develop
+  git push -u origin develop
 else
   info "Skipping push (no initial commit created)"
 fi
@@ -341,3 +346,6 @@ if [[ "$NO_BROWSER" == false ]] && command -v google-chrome >/dev/null 2>&1; the
 elif [[ "$NO_BROWSER" == false ]]; then
   warning "google-chrome not found, skipping browser open"
 fi
+
+# Write repo directory to temp file for shell function wrapper
+echo "$REPO_DIR" > /tmp/.git_create_repo_dir
