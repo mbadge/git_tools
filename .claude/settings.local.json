@@ -1,5 +1,15 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(make show:*)",
+      "Bash(make build:*)",
+      "Bash(echo:*)",
+      "Bash(chkstow:*)",
+      "Bash(readlink:*)",
+      "Bash(ps:*)",
+      "Bash(zsh -c 'echo $fpath')",
+      "Bash(ln:*)"
+    ],
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",
