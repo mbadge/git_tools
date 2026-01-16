@@ -74,7 +74,7 @@ Wrappers vs Composers
 **Composers** are complex scripts that chain multiple Git commands together:
 
 * ``git_create_repo.sh`` - Create repositories via GitHub/GitLab API
-* ``git_branch_rm_pair.sh`` - Remove paired branches from remotes
+* ``git_branch_rm_all.sh`` - Remove branches from all remotes
 * ``git_rebase_local_remote.sh`` - Automated rebase workflow
 
 See :doc:`wrappers` and :doc:`composers` for complete details.

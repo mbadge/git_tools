@@ -128,7 +128,7 @@ Current test files:
 
 - `git_url.bats`: Tests for git_url.sh
 - `git_ignore_symlinks.bats`: Tests for git_ignore_symlinks.sh
-- `git_branch_rm_pair.bats`: Tests for git_branch_rm_pair.sh
+- `git_branch_rm_all.bats`: Tests for git_branch_rm_all.sh
 - `git_mr_wrappers.bats`: Tests for git_fetch_all.sh and git_status_all.sh
 - `git_wrappers.bats`: Tests for gl.sh and gd.sh
 
