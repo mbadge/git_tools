@@ -25,9 +25,20 @@ all: build
 build:
 	@echo Farming symlinks to $(STOW_DIR)/$(REPO) files
 	stow $(STOW_ARGS) --dir=$(STOW_DIR) $(REPO)
-	
-	# check for bogus symlinks (pointing to non-existent files)
-	chkstow -b
+
+	# remove broken symlinks in ~/bin that appear to be from this repo
+	@find ~/bin -maxdepth 1 -xtype l 2>/dev/null | while read -r link; do \
+		target=$$(readlink "$$link" 2>/dev/null); \
+		name=$$(basename "$$link"); \
+		if echo "$$target" | grep -qE "(git-tools|stow.*/bin)" || \
+		   echo "$$name" | grep -qE "^(git_|gl|gd|Gl|Gd|Gdc|clone_all|docker_enter)"; then \
+			if rm -f "$$link" 2>/dev/null; then \
+				echo "Removed broken link: $$link"; \
+			else \
+				echo "Warning: cannot remove $$link (permission denied)"; \
+			fi; \
+		fi; \
+	done
 
 .PHONY: show
 show:

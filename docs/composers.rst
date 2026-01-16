@@ -21,7 +21,7 @@ Composers follow the naming pattern: ``git_snake_case.sh``
 
 Examples:
   * ``git_create_repo.sh``
-  * ``git_branch_rm_pair.sh``
+  * ``git_branch_rm_all.sh``
   * ``git_rebase_local_remote.sh``
 
 This naming makes it clear that:
@@ -69,39 +69,23 @@ See :doc:`command-reference` for all available options.
 Branch Management
 ~~~~~~~~~~~~~~~~~
 
-git_branch_rm_pair.sh
-^^^^^^^^^^^^^^^^^^^^^
-
-**Purpose**: Safely remove both local and remote branch pairs
-
-**Features**:
-  * Checks if branch is merged before deletion
-  * Prompts for confirmation before force deletion
-  * Separate confirmation for remote deletion
-  * Prevents accidental data loss
-
-**Example Workflow**:
-
-.. code-block:: bash
-
-   git_branch_rm_pair.sh feature-completed
-
-Interactive flow:
-  1. Attempts to delete local branch with ``-d`` flag
-  2. If not merged, prompts to confirm force delete
-  3. Asks for confirmation before deleting remote branch
-  4. Executes ``git push origin --delete`` if confirmed
-
 git_branch_rm_all.sh
 ^^^^^^^^^^^^^^^^^^^^
 
-**Purpose**: Remove a branch from all configured remotes
+**Purpose**: Remove a branch locally and from all configured remotes
+
+**Features**:
+  * Removes local branch with force delete
+  * Checks all configured remotes for the branch
+  * Removes from every remote that has it
+  * Reports success/failure per remote
+  * Supports tab-completion for branch names
 
 **Example Workflow**:
 
 .. code-block:: bash
 
-   git_branch_rm_all.sh old-feature
+   git_branch_rm_all.sh feature-completed
 
 This iterates through all remotes and removes the specified branch from each.
 

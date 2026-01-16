@@ -141,33 +141,23 @@ Repository Management
 Branch Management
 ~~~~~~~~~~~~~~~~~
 
-**git_branch_rm_pair.sh**
-  Remove local and remote branch pairs with confirmation
-
-  Usage:
-    .. code-block:: bash
-
-       git_branch_rm_pair.sh BRANCH_NAME
-
-  Examples:
-    .. code-block:: bash
-
-       git_branch_rm_pair.sh merged-feature-branch
-
-  Description:
-    Convenience function to safely remove both local and remote branches.
-    Prompts for confirmation before deleting remote branches.
-
 **git_branch_rm_all.sh**
-  Remove branches from all configured remotes
+  Remove a branch locally and from all configured remotes
 
   Usage:
     .. code-block:: bash
 
        git_branch_rm_all.sh BRANCH_NAME
 
+  Examples:
+    .. code-block:: bash
+
+       git_branch_rm_all.sh merged-feature-branch
+
   Description:
-    Removes a branch from all configured remotes in the repository.
+    Convenience function to remove both local and remote branches.
+    Checks all configured remotes and removes the branch from each one that has it.
+    Supports tab-completion for branch names.
 
 Remote Operations
 ~~~~~~~~~~~~~~~~~
@@ -277,7 +267,7 @@ All scripts support the ``--help`` flag:
 .. code-block:: bash
 
    git_create_repo.sh --help
-   git_branch_rm_pair.sh --help
+   git_branch_rm_all.sh --help
 
 See Also
 --------

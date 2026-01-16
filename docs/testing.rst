@@ -268,8 +268,8 @@ Current test files and their coverage:
      - ``git_url.sh``
    * - ``git_ignore_symlinks.bats``
      - ``git_ignore_symlinks.sh``
-   * - ``git_branch_rm_pair.bats``
-     - ``git_branch_rm_pair.sh``
+   * - ``git_branch_rm_all.bats``
+     - ``git_branch_rm_all.sh``
    * - ``git_mr_wrappers.bats``
      - ``git_fetch_all.sh``, ``git_status_all.sh``
    * - ``git_wrappers.bats``
@@ -406,13 +406,13 @@ Cover both success and failure cases:
 
 .. code-block:: bash
 
-   @test "git_branch_rm_pair.sh: succeeds with valid branch" {
+   @test "git_branch_rm_all.sh: succeeds with valid branch" {
        # Setup
        # Test success case
        assert_success
    }
 
-   @test "git_branch_rm_pair.sh: fails with invalid branch" {
+   @test "git_branch_rm_all.sh: fails with invalid branch" {
        # Test failure case
        assert_failure
        assert_output --partial "error"

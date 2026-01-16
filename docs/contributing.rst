@@ -146,7 +146,7 @@ Good commit messages:
   * ``Fix: git_url.sh fails on SSH URLs without .git extension``
   * ``Add: git_merge_latest.sh composer for merge workflows``
   * ``Update: improve error handling in git_create_repo.sh``
-  * ``Docs: add examples for git_branch_rm_pair.sh``
+  * ``Docs: add examples for git_branch_rm_all.sh``
 
 Push and Create Pull Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -203,7 +203,7 @@ Naming Conventions
 **Composers**: ``git_snake_case.sh``
 
 * Example: ``git_create_repo.sh``
-* Example: ``git_branch_rm_pair.sh``
+* Example: ``git_branch_rm_all.sh``
 
 Bash Best Practices
 ~~~~~~~~~~~~~~~~~~~
