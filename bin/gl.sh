@@ -2,6 +2,11 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+# Set terminal title (resolve symlink to find helper)
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+source "${SCRIPT_DIR}/terminal_title.sh"
+set_git_terminal_title "$0" "$@"
+
 #/ Usage: gl.sh INCLUDE_AUTHOR COMMIT_RANGE
 #/ Description: Pretty formatting of either the selected revision range or all commits.
 #/	include author: boolean true/false. default: false

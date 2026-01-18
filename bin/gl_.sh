@@ -2,6 +2,11 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+# Set terminal title (resolve symlink to find helper)
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+source "${SCRIPT_DIR}/terminal_title.sh"
+set_git_terminal_title "$0" "$@"
+
 # Git log inspection functions
 # Pretty formatting of either the selecting revision range or all commits
 # Default shows max info

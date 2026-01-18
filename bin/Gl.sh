@@ -2,6 +2,11 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+# Set terminal title (resolve symlink to find helper)
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+source "${SCRIPT_DIR}/terminal_title.sh"
+set_git_terminal_title "$0" "$@"
+
 #/ Usage: Gl.sh COMMIT_RANGE
 #/ Description: watch a live git log with color
 #/ Examples: Gl.sh master..develop
@@ -9,15 +14,6 @@ IFS=$'\n\t'
 #/   --help: Display this help message
 usage() { grep '^#/' "$0" | cut -c4- ; exit 0 ; }
 expr "$*" : ".*--help" > /dev/null && usage
-
-
-# Get repository information for window title
-REPO_PATH=$(git rev-parse --show-toplevel 2>/dev/null || echo "")
-if [ -n "$REPO_PATH" ]; then
-    REPO_NAME=$(basename "$REPO_PATH")
-    # Set terminal window title
-    echo -ne "\033]0;Gl.sh: ${REPO_NAME} ${REPO_PATH}\007"
-fi
 
 COMMIT_RANGE=${1:---all}
 FORMAT_GIT_LOG="%C(auto)%h %Cblue%cr%Creset%C(auto) %d %s"
