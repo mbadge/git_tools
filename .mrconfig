@@ -20,10 +20,6 @@ fetch = git fetch -p
 checkout = git clone 'git@git.nak.co:libR/admin.git' 'admin'
 fetch = git fetch -p
 
-[bin/stow/reporting]
-checkout = git clone 'git@git.nak.co:libR/reporting-tools.git' 'reporting'
-fetch = git fetch -p
-
 [bin/stow/workflow]
 checkout = git clone 'git@git.nak.co:home/workflow.git' 'workflow'
 fetch = git fetch -p
