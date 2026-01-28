@@ -22,6 +22,7 @@ IFS=$'\n\t'
 #/   --no-register: Skip myrepos registration
 #/   --no-initial-commit: Skip creating initial commit
 #/   --no-browser: Skip opening URL in browser
+#/   --no-labels: Skip creating standard labels (GitLab only)
 usage() { grep '^#/' "$0" | cut -c4- ; exit 0 ; }
 expr "$*" : ".*--help" > /dev/null && usage
 
@@ -62,6 +63,7 @@ IN_PLACE=false
 NO_REGISTER=false
 NO_INITIAL_COMMIT=false
 NO_BROWSER=false
+NO_LABELS=false
 REPO_NAME=""
 
 # Parse arguments
@@ -101,6 +103,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --no-browser)
       NO_BROWSER=true
+      shift
+      ;;
+    --no-labels)
+      NO_LABELS=true
       shift
       ;;
     -*)
@@ -242,6 +248,20 @@ if [[ "$PLATFORM" == "gitlab" ]]; then
     info "Repository created successfully"
     SSH_URL=$(echo "$RESPONSE_BODY" | jq -r '.ssh_url_to_repo')
     HTTP_URL=$(echo "$RESPONSE_BODY" | jq -r '.web_url')
+    PROJECT_PATH=$(echo "$RESPONSE_BODY" | jq -r '.path_with_namespace')
+
+    # Create standard labels
+    if [[ "$NO_LABELS" == false ]]; then
+      LABELS_FILE="$TOOLS_DIR/templates/standard_labels.json"
+      if [[ -f "$LABELS_FILE" ]]; then
+        info "Creating standard labels..."
+        GITLAB_TOKEN="$API_TOKEN" GITLAB_URL="$GITLAB_URL" \
+          "$SCRIPT_DIR/gitlab_sync_labels.sh" --import-file "$LABELS_FILE" --target-repo "$PROJECT_PATH" \
+          || warning "Failed to create labels (you can add them manually)"
+      else
+        warning "Standard labels file not found: $LABELS_FILE"
+      fi
+    fi
   elif [[ "$HTTP_CODE" == "400" ]]; then
     ERROR_MSG=$(echo "$RESPONSE_BODY" | jq -r '.message // .error // "Bad request"')
     fatal "Failed to create repository: $ERROR_MSG (HTTP $HTTP_CODE)"

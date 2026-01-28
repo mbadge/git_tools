@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Bug",
+    "color": "#AD8D43",
+    "description": "Something isn't working correctly"
+  },
+  {
+    "name": "Feature",
+    "color": "#428BCA",
+    "description": "New functionality or capability"
+  },
+  {
+    "name": "Enhancement",
+    "color": "#A8D695",
+    "description": "Improvement to existing functionality"
+  },
+  {
+    "name": "Documentation",
+    "color": "#8E44AD",
+    "description": "Documentation improvements or additions"
+  },
+  {
+    "name": "Experiment",
+    "color": "#34495E",
+    "description": "Exploratory or experimental work"
+  },
+  {
+    "name": "Workflow",
+    "color": "#D1D100",
+    "description": "Process or workflow improvements"
+  },
+  {
+    "name": "To Do",
+    "color": "#F0AD4E",
+    "description": "Planned but not yet started"
+  },
+  {
+    "name": "Doing",
+    "color": "#69D100",
+    "description": "Currently in progress"
+  },
+  {
+    "name": "Acute",
+    "color": "#D10069",
+    "description": "Urgent, needs immediate attention"
+  },
+  {
+    "name": "High Yield",
+    "color": "#A295D6",
+    "description": "High value, should prioritize"
+  },
+  {
+    "name": "Scale",
+    "color": "#AD4363",
+    "description": "Large scope or cross-cutting concern"
+  }
+]
