@@ -8,7 +8,9 @@
       "Bash(readlink:*)",
       "Bash(ps:*)",
       "Bash(zsh -c 'echo $fpath')",
-      "Bash(ln:*)"
+      "Bash(ln:*)",
+      "Bash(GIT_DIR=~/stow/git-tools/.git GIT_WORK_TREE=~/stow/git-tools git status:*)",
+      "Bash(GIT_DIR=~/stow/git-tools/.git GIT_WORK_TREE=~/stow/git-tools git diff:*)"
     ],
     "deny": [
       "Read(./.env)",
