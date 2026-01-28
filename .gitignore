@@ -12,6 +12,7 @@
 # Secrets ----
 .github/secret.txt
 .gitlab/secret.txt
+*secret*
 
 # DEV ----
 .vscode/
