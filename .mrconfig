@@ -109,3 +109,12 @@ checkout = git clone 'git@git.nak.co:libR/thirdparty.git' 'thirdparty'
 
 [/mnt/repo/lib/vizR]
 checkout = git clone 'git@git.nak.co:libR/vizR.git' 'vizR'
+
+[/mnt/repo/mab/employement]
+checkout = git clone 'git@git.nak.co:mabadgeley/employement.git' 'employement'
+
+[/mnt/repo/mab/money/amazon]
+checkout = git clone 'git@git.nak.co:mabadgeley/amazon.git' 'amazon'
+
+[/mnt/repo/third_party/google-home]
+checkout = git clone 'git@git.nak.co:mabadgeley/google-home.git' 'google-home'
